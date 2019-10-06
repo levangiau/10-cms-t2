@@ -1,19 +1,12 @@
 
-<?php
-get_header();
+<?php get_header(); 
 
-if ( have_posts() ) :
-while ( have_posts() ) : the_post(); ?>
-<article class="post">
-<h2><a href="<?php the_permalink()?>"><?php the_title() ?></a></h2>
-<?php the_content() ?>
-</article>
+ if ( have_posts() ) :
+ get_template_part( 'content');
+ else :
+ get_template_part( 'content', 'none' );
+ endif; 
+the_post_thumbnail("thumbnail",array( "title" => get_the_title(),"alt" => get_the_title() ));
+ get_sidebar(); 
 
-<?php endwhile;
-else :
-echo '<p>There are no posts!</p>';
-endif;
-
-get_footer();
-
-?>
+get_footer(); ?>
